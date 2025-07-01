@@ -1,0 +1,108 @@
+SLOT rmhConfigProperties
+    INSERT {
+        property bool rmhNavigatorComperssedListHack: ~&6504329801&~
+        property bool rmhNavigatorComperssedListMode: ~&6504329801&~
+    }
+END SLOT
+
+SLOT rmhConfigAliases
+    INSERT {
+        property alias rmhNavigatorComperssedListHack: ~&7083272960857&~.rmhNavigatorComperssedListHack
+        property alias rmhNavigatorComperssedListMode: ~&7083272960857&~.rmhNavigatorComperssedListMode
+    }
+END SLOT
+
+SLOT rmhSettingsGeneralModel
+    INSERT {
+        {
+           ~&214632764553&~: "Compressed files list",
+           ~&478136262235079021&~: "Add an option to the 'Sort by/View' dropdown menu to display the file list in a compressed mode",
+           ~&233723734822480&~: ~&7082020628281&~.rmhNavigatorCompressedListHack,
+           ~&7082453764199&~: () => { ~&7082020628281&~.rmhNavigatorCompressedListHack = !~&7082020628281&~.rmhNavigatorCompressedListHack },
+        },
+    }
+END SLOT
+
+AFFECT [[1937739096773363297]]
+    TRAVERSE [[3819512207256720568]] > [[254501108490678590]]#[[5880826671165513617]] > [[3819512207256720568]] > [[7081293658967]]#[[8400213107203940594]]
+        TRAVERSE [[3066403218661847378]]#[[8399749585111985441]]
+            REBUILD [[7713147376549066]]
+                LOCATE AFTER ALL INSERT { && !(~&7082020628281&~.rmhNavigatorComperssedListMode && ~&7082020628281&~.rmhNavigatorComperssedListHack) }
+            END REBUILD
+            REBUILD [[7712792149454042]]
+                LOCATE BEFORE ALL
+                INSERT { ~&7082020628281&~.rmhNavigatorComperssedListMode = ~&214625660372&~; }
+            END REBUILD
+        END TRAVERSE
+        LOCATE AFTER [[3066403218661847378]]#[[8399749585111985441]]
+        INSERT {
+            ~&3066403218661847378&~ {
+                ~&5972374&~: rmhCompressedListButton
+                ~&6504315758&~: ~&6504222003&~("Compressed List")
+                ~&8399601734642709923&~: ~&"15094524446771854124&~
+                ~&7713147376549066&~: ~&1656766700136969923&~.~&10600535383506682085&~ === ~&3109069364380601502&~.~&14543942701415045736&~.~&6502882469&~ && ~&7082020628281&~.rmhNavigatorComperssedListMode
+                ~&11921478716705041271&~: ~&1656766700136969923&~
+                ~&233748328658231&~: ~&7082020628281&~.rmhNavigatorComperssedListHack
+                ~&7082729686082&~: ~&7082020628281&~.rmhNavigatorComperssedListHack
+                    ? ~&7082020628281&~.~&4766506380767575030&~
+                    : 0
+                ~&8399478875915466836&~.~&180995&~: ~&7083038346995&~.~&180995&~ + 1
+                ~&254542236275632405&~: ~&7712792149454042&~()
+
+                /* Keyboard Navigation*/
+                function ~&7712792149454042&~() {
+                    ~&7082020628281&~.rmhNavigatorComperssedListMode = ~&6504329801&~;
+                    ~&1656766700136969923&~.~&10600535383506682085&~ = ~&3109069364380601502&~.~&14543942701415045736&~.~&6502882469&~;
+                    ~&254551912359458949&~.~&214641748151&~();
+                }
+            }
+        }
+    END TRAVERSE
+END AFFECT
+
+AFFECT [[14057140251252381702]]
+    TRAVERSE [[18288960390210305070]]
+        REPLACE [[7082729686082]] WITH {
+            ~&7082729686082&~: ~&7082020628281&~.rmhNavigatorComperssedListHack && ~&7082020628281&~.rmhNavigatorComperssedListMode
+                ? ~&7082020628281&~.~&6283161521813480432&~
+                : (~&7082020628281&~.~&5774682069758874195&~ + ~&7082020628281&~.~&15578034493820432050&~)
+        }
+
+        TRAVERSE [[254501558939456351]]#[[197098625]] > [[7081645463424]]#[[8399601734368028265]]
+            REBUILD [[7082729686082]]
+                LOCATE BEFORE ALL
+                INSERT { ~&7082020628281&~.rmhNavigatorComperssedListHack && ~&7082020628281&~.rmhNavigatorComperssedListMode ? ~&7082020628281&~.~&3842193742606557678&~ : }
+            END REBUILD
+            REBUILD [[16021043814775702381]]
+                LOCATE BEFORE ALL
+                INSERT { ~&7082020628281&~.rmhNavigatorComperssedListHack && ~&7082020628281&~.rmhNavigatorComperssedListMode ? notebookIconComponent : }
+            END REBUILD
+        END TRAVERSE
+        TRAVERSE [[254501558939456351]]#[[197098625]] > [[14125623155555875541]]#[[7082545991543]] > [[254501558939456351]]#[[15537412169677751681]]
+            LOCATE BEFORE ALL INSERT { ~&233748328658231&~: !(~&7082020628281&~.rmhNavigatorComperssedListHack && ~&7082020628281&~.rmhNavigatorComperssedListMode) }
+        END TRAVERSE
+
+        LOCATE AFTER ALL
+        INSERT {
+            ~&254480451320573660&~ {
+                ~&5972374&~: notebookIconComponent
+                ~&6502786168&~ {
+                    ~&214646099849&~: ~&7083038346995&~.~&214646099849&~
+                    ~&7082729686082&~: ~&7083038346995&~.~&7082729686082&~
+                    ~&425121728314878811&~.~&6502767986&~ {
+                        ~&5972374&~: ~&7713132905653537&~
+                        ~&233721384511543&~.~&7712879746914881&~: ~&7083038346995&~
+                        ~&6504284228&~: ~&7082020628281&~.~&3842193742606557678&~
+                        ~&7083172477658&~: {
+                            ~&7083181535963&~(~&7713268673447380&~.~&7713012672604043&~) {
+                                ~&6503700293&~ ~&7081371018502&~.~&7711648881278795&~.~&197061219&~: ~&7083121450889&~ ~&"8609871304211220143&~;
+                                ~&6503700293&~ ~&7081371018502&~.~&7711648881278795&~.~&6502638581&~: ~&7083121450889&~ ~&"57216753304735040&~;
+                            }
+                            ~&7083121450889&~ ~&"8609871731041592465&~;
+                        }
+                    }
+                }
+            }
+        }
+    END TRAVERSE
+END AFFECT

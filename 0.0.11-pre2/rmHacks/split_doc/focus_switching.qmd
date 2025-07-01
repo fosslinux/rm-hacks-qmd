@@ -1,0 +1,75 @@
+AFFECT [[11806562588218124596]]
+    TRAVERSE [[8397993708429497603]]
+        LOCATE BEFORE ALL INSERT { required property ~&197102514&~ askForToolbarSwitch }
+        TRAVERSE [[6502786168]] > [[12275738949138671844]]
+            LOCATE BEFORE ALL INSERT { askForToolbarSwitch: ~&6504254477&~.askForToolbarSwitch }
+        END TRAVERSE
+    END TRAVERSE
+END AFFECT
+
+AFFECT [[17298303916558156758]]
+    TRAVERSE [[254504370080162629]]
+        LOCATE BEFORE ALL INSERT { required property ~&197102514&~ askForToolbarSwitch }
+        TRAVERSE [[8520322697674622449]]#[[8400129380148390002]]
+            REBUILD [[233739427250348]]
+                LOCATE AFTER STREAM / { / INSERT { ~&254549375155946341&~.askForToolbarSwitch() }
+            END REBUILD
+        END TRAVERSE
+    END TRAVERSE
+END AFFECT
+
+AFFECT [[1224665461898798997]]
+    TRAVERSE [[8397993708429497603]]
+        LOCATE BEFORE ALL
+        INSERT {
+            signal askForToolbarSwitch
+        }
+        TRAVERSE [[5728643844066569666]]
+            LOCATE BEFORE ALL INSERT { askForToolbarSwitch: () => ~&15793094956877902211&~.askForToolbarSwitch() }
+        END TRAVERSE
+
+        REBUILD [[11332990887960589462]]
+            LOCATE BEFORE ALL
+            INSERT { ~&15793094956877902211&~.askForToolbarSwitch() }
+        END REBUILD
+    END TRAVERSE
+END AFFECT
+
+AFFECT [[2328484894988065446]]
+    TRAVERSE [[8397788359424131273]] > [[8397993708429497603]]#[[7713531976371484]] > [[8397993708429497603]]#[[7713694313857736]]
+        LOCATE AFTER [[7081645463424]]#[[15793094956877902211]]
+        INSERT {
+            ~&428051690305612204&~ {
+                ~&7083194890448&~: ~&15793094956877902211&~.~&6503936152&~
+                function onAskForToolbarSwitch() {
+                    /* Switch to main!*/
+                    mainDocumentSelected = ~&6504329801&~;
+                }
+            }
+            ~&428051690305612204&~ {
+                ~&7083194890448&~: rmhDocumentViewSplit.~&6503936152&~
+                function onAskForToolbarSwitch() {
+                    /* Switch to split document!*/
+                    mainDocumentSelected = ~&214625660372&~;
+                }
+            }
+        }
+    END TRAVERSE
+END AFFECT
+
+;   I do not understand why the writing utencils selection code is like this...
+AFFECT [[2850686855228789517]]
+    TRAVERSE [[454089850271038938]]
+        REMOVE [[7081645463424]]:[[6144132522167405889]]
+        REMOVE [[254480451320573660]]#[[500047409926864674]]
+        REDEFINE [[254480451320573660]]#[[7069700017500842008]]
+            LOCATE BEFORE ALL
+            REMOVE UNTIL { ~&14125623155555875541&~ }
+            INSERT { ~&6144132522167405889&~: }
+            LOCATE AFTER { ~&8051309119171855706&~ }
+            LOCATE AFTER STREAM ? } ?
+            LOCATE AFTER STREAM ? } ?
+            REMOVE UNTIL END
+        END REDEFINE
+    END TRAVERSE
+END AFFECT

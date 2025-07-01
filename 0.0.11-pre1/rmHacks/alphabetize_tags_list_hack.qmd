@@ -1,0 +1,36 @@
+SLOT rmhConfigProperties
+    INSERT {
+        property bool rmhAlphabetizeTagsListHack: ~&6504329801&~
+    }
+END SLOT
+
+SLOT rmhConfigAliases
+    INSERT {
+        property alias rmhAlphabetizeTagsListHack: ~&7083272960857&~.rmhAlphabetizeTagsListHack
+    }
+END SLOT
+
+SLOT rmhSettingsGeneralModel
+    INSERT {
+        {
+            ~&214632764553&~: "Alphabetize tags filter list",
+            ~&478136262235079021&~: "Sort the tags used for filtering in alphabetical order within the 'Menu/Tags' view",
+            ~&233723734822480&~: ~&7082020628281&~.rmhAlphabetizeTagsListHack,
+            ~&7082453764199&~: () => { ~&7082020628281&~.rmhAlphabetizeTagsListHack = !~&7082020628281&~.rmhAlphabetizeTagsListHack },
+        },
+    }
+END SLOT
+
+AFFECT [[14545558542717713590]]
+    TRAVERSE [[3819512207256720568]]
+        RENAME [[16653860926940761936]] TO rmh_updateModels
+        INSERT {
+            function ~&16653860926940761936&~() {
+                rmh_updateModels();
+                ~&254548759285000107&~.~&6504310840&~ = ~&7082020628281&~.rmhAlphabetizeTagsListHack
+                    ? ~&233694067165438&~.~&254548759509949624&~(~&6504329801&~).~&6504290513&~()
+                    : ~&233694067165438&~.~&254548759509949624&~(~&6504329801&~);
+            }
+        }
+    END TRAVERSE
+END AFFECT

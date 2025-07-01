@@ -1,0 +1,33 @@
+SLOT rmhConfigAliases
+    INSERT {
+        property alias rmhDocumentTogglesHack: ~&7083272960857&~.rmhDocumentTogglesHack
+    }
+END SLOT
+
+SLOT rmhConfigProperties
+    INSERT {
+        property bool rmhDocumentTogglesHack: ~&6504329801&~
+    }
+END SLOT
+
+SLOT rmhSettingsToolbarModel
+    INSERT {
+        {
+            ~&214632764553&~: "Document-level toggle buttons",
+            ~&478136262235079021&~: "Additional toggle buttons accessible from the document-level Share Tool menu.",
+            ~&233723734822480&~: ~&7082020628281&~.rmhDocumentTogglesHack,
+            ~&7082453764199&~: () => { ~&7082020628281&~.rmhDocumentTogglesHack = !~&7082020628281&~.rmhDocumentTogglesHack },
+        },
+    }
+END SLOT
+
+AFFECT [[10482081098896730493]]
+    IMPORT [[7082546018834]] 1.0
+    IMPORT com.remarkable 1.0
+    IMPORT device.global 1.0
+    IMPORT device.ui.controls 1.0
+
+    TRAVERSE [[14888501028015932088]] > [[14125623155555875541]]:[[6144132522167405889]]
+        LOCATE AFTER ALL INSERT SLOT rmhShareToolFoldoutModel
+    END TRAVERSE
+END AFFECT
