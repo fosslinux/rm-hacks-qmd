@@ -2,7 +2,7 @@
 
 # rM Hacks (QMLDiff version)
 
-This repository is meant to me the continuation of the [rmHacks](https://github.com/mb1986/rm-hacks) project, this time rewritten in the [qmldiff language](https://github.com/asivery/qmldiff)
+This repository is meant to be the continuation of the [rmHacks](https://github.com/mb1986/rm-hacks) project, this time rewritten in the [qmldiff language](https://github.com/asivery/qmldiff)
 
 **This project is still in beta! There will be bugs!**
 
