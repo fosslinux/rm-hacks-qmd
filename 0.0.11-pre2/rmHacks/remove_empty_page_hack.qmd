@@ -1,0 +1,46 @@
+SLOT rmhConfigProperties
+    INSERT {
+        enum EmptyPageMode {
+            ~&7081724354802&~,
+            DelLast,
+            DelAll
+        }
+        property ~&197088788&~ rmhRemoveEmptyPageHack: ~&7082020628281&~.EmptyPageMode.~&7081724354802&~
+    }
+END SLOT
+
+SLOT rmhConfigAliases
+    INSERT {
+        property alias rmhRemoveEmptyPageHack: ~&7083272960857&~.rmhRemoveEmptyPageHack
+    }
+END SLOT
+
+SLOT rmhSettingsGesturesModel
+    INSERT {
+        {
+           ~&214632764553&~: "Remove empty pages (end of document)",
+           ~&478136262235079021&~: "When an empty page at the end of a document is navigated away from, it is removed",
+           ~&233723734822480&~: ~&7082020628281&~.rmhRemoveEmptyPageHack == ~&7082020628281&~.EmptyPageMode.DelLast,
+           ~&7082453764199&~: () => { ~&7082020628281&~.rmhRemoveEmptyPageHack = ~&7082020628281&~.rmhRemoveEmptyPageHack == ~&7082020628281&~.EmptyPageMode.DelLast ? ~&7082020628281&~.EmptyPageMode.~&7081724354802&~ : ~&7082020628281&~.EmptyPageMode.DelLast },
+        },
+        {
+           ~&214632764553&~: "Remove empty pages (all)",
+           ~&478136262235079021&~: "When an empty page is navigated away from, it is removed",
+           ~&233723734822480&~: ~&7082020628281&~.rmhRemoveEmptyPageHack == ~&7082020628281&~.EmptyPageMode.DelAll,
+           ~&7082453764199&~: () => { ~&7082020628281&~.rmhRemoveEmptyPageHack = ~&7082020628281&~.rmhRemoveEmptyPageHack == ~&7082020628281&~.EmptyPageMode.DelAll ? ~&7082020628281&~.EmptyPageMode.~&7081724354802&~ : ~&7082020628281&~.EmptyPageMode.DelAll },
+        },
+    }
+END SLOT
+
+AFFECT [[1224665461898798997]]
+    TRAVERSE [[8397993708429497603]]
+        REBUILD [[7713405014271992]]
+            LOCATE BEFORE ALL
+            INSERT STREAM /          
+              ~&214622607920&~ checkEmpty = ~&7082020628281&~.rmhRemoveEmptyPageHack == ~&7082020628281&~.EmptyPageMode.DelAll || (~&7082020628281&~.rmhRemoveEmptyPageHack == ~&7082020628281&~.EmptyPageMode.DelLast && ~&477346483278306569&~ == ~&254543134818768527&~ - 1);
+              ~&5972376&~ (checkEmpty && ~&10649546070979613506&~()) {
+                  ~&243560541951849292&~.~&478126504999396876&~(~&7712934851008712&~, [~&15793094956877902211&~.~&477346483278306569&~]);
+              }
+                    /
+        END REBUILD
+END AFFECT

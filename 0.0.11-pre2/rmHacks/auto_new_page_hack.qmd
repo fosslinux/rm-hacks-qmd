@@ -1,31 +1,36 @@
 SLOT rmhConfigProperties
     INSERT {
-        property bool rmhAutoNewPageHack: ~&6504329801&~
+        property bool rmhAutoNewPageHack: true
     }
 END SLOT
 
 SLOT rmhConfigAliases
     INSERT {
-        property alias rmhAutoNewPageHack: ~&7083272960857&~.rmhAutoNewPageHack
+        property alias rmhAutoNewPageHack: values.rmhAutoNewPageHack
     }
 END SLOT
 
 SLOT rmhSettingsDocumentsModel
     INSERT {
         {
-           ~&214632764553&~: "Automatically add new pages",
-           ~&478136262235079021&~: "When swiping to next page, new pages are automatically added",
-           ~&233723734822480&~: ~&7082020628281&~.rmhAutoNewPageHack,
-           ~&7082453764199&~: () => { ~&7082020628281&~.rmhAutoNewPageHack = !~&7082020628281&~.rmhAutoNewPageHack },
+           label: "Automatically add new pages",
+           description: "When swiping to next page, new pages are automatically added",
+           checked: Values.rmhAutoNewPageHack,
+           action: () => {
+               Values.rmhAutoNewPageHack = !Values.rmhAutoNewPageHack;
+               if (Values.rmhAutoNewPageHack && Values.rmhRemoveEmptyPageHack == Values.EmptyPageMode.Normal) {
+                   Values.rmhRemoveEmptyPageHack = Values.EmptyPageMode.DelLast;
+               }
+           },
         },
     }
 END SLOT
 
-AFFECT [[1224665461898798997]]
-    TRAVERSE [[8397993708429497603]]
-        REBUILD [[492388835821912021]]
-            LOCATE BEFORE STREAM /    ~&6037617151381287454&~) {    /
-            INSERT { ~&7082020628281&~.rmhAutoNewPageHack || }
+AFFECT /qml/device/view/documentview/DocumentView.qml
+    TRAVERSE FocusScope
+        LOCATE AFTER pages
+        REBUILD moveForward
+            LOCATE BEFORE STREAM /      newPageVisible) {             /
+            INSERT { Values.rmhAutoNewPageHack || }
         END REBUILD
-    END TRAVERSE
 END AFFECT
