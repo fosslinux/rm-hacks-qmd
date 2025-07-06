@@ -10,7 +10,7 @@ SLOT rmhConfigAliases
     }
 END SLOT
 
-SLOT rmhSettingsGesturesModel
+SLOT rmhSettingsDocumentsModel
     INSERT {
         {
            ~&214632764553&~: "Automatically add new pages",
